@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050816">
+  <title>Super Premium Plus | BTECH-TV WORLD PRO MAX</title>
+  <style>
+    :root {
+      --bg:#050816; --card:#12213f; --card2:#192d55;
+      --primary:#00d4ff; --success:#00ff99; --text:#fff; --muted:#c8d2e5;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; padding:24px;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg); color:var(--text);
+    }
+    .container { width:min(900px,100%); margin:0 auto; }
+    .card {
+      padding:clamp(22px,5vw,45px); border-radius:20px;
+      background:var(--card);
+      box-shadow:0 0 35px rgba(0,212,255,.14);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .brand { text-align:center; color:var(--primary); font-weight:900; }
+    h1 { margin:10px 0; text-align:center; }
+    .subtitle { text-align:center; color:var(--muted); line-height:1.6; }
+    .price { margin:22px 0 8px; text-align:center; color:var(--success); font-size:clamp(42px,8vw,64px); font-weight:900; }
+    .duration { text-align:center; font-size:20px; }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:28px 0; padding:0; list-style:none; }
+    .features li { padding:16px; border-radius:10px; background:var(--card2); }
+    .buttons { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+    button { padding:14px 26px; border:0; border-radius:10px; cursor:pointer; font-weight:800; font-size:16px; }
+    .subscribe { background:var(--primary); color:#000; }
+    .back { background:#555; color:#fff; }
+    button:hover { filter:brightness(1.08); }
+    @media(max-width:480px) { body{padding:12px} .features{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <div class="brand">BTECH-TV WORLD PRO MAX</div>
+      <h1>👑 Super Premium Plus</h1>
+      <p class="subtitle">Upgrade your BTECH-TV subscription and continue watching premium live television.</p>
+      <div class="price">₦50,000</div>
+      <div class="duration">Lifetime access</div>
+
+      <ul class="features">
+        <li>✅ Everything in Super Premium</li>
+<li>✅ Lifetime package access</li>
+<li>✅ Premium channel access</li>
+<li>✅ Maximum available stream quality</li>
+<li>✅ Priority support</li>
+      </ul>
+
+      <div class="buttons">
+        <button class="subscribe" type="button" onclick="subscribe()">Subscribe / Pay</button>
+        <button class="back" type="button" onclick="history.back()">← Back to BTECH-TV</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    "use strict";
+    const PACKAGE = 'Super Premium Plus';
+    const PRICE = '₦50,000';
+    const DURATION = 'Lifetime';
+
+    function subscribe() {
+      localStorage.setItem("btech_tv_package", PACKAGE);
+      localStorage.setItem("btech_tv_package_price", PRICE);
+      localStorage.setItem("btech_tv_package_duration", DURATION);
+
+      if (window.PaystackPop) {
+        alert("Connect this package to your verified Paystack transaction endpoint before accepting payment.");
+      } else {
+        alert(PACKAGE + " selected. Connect the production payment gateway to complete checkout.");
+      }
+    }
+  </script>
+</body>
+</html>
