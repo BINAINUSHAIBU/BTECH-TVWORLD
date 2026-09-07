@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050816">
+  <meta name="description" content="BTECH-TV WORLD PRO MAX - Ultra BTECH-TV World Engine">
+  <meta name="application-name" content="BTECH-TV WORLD PRO MAX">
+  <title>BTECH-TV WORLD PRO MAX</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+
+<body>
+  <div class="app" id="app">
+
+    <aside class="sidebar" aria-label="BTECH-TV navigation">
+      <div class="logo">BTECH-TV PRO MAX</div>
+      <div class="sub">Ultra BTECH-TV World Engine X</div>
+
+      <div class="menu-title">🌍 Countries</div>
+      <div id="countryMenu"></div>
+
+      <div class="menu-title">🎬 Categories</div>
+      <div id="categoryMenu"></div>
+
+      <div class="menu-title">🗣 Languages</div>
+      <div id="languageMenu"></div>
+
+      <div class="menu-title">🔥 Tools</div>
+      <button class="nav-btn" type="button" onclick="scanStreams()">📡 Scan</button>
+      <button class="nav-btn" type="button" onclick="speedBoost()">⚡ Boost</button>
+      <button class="nav-btn" type="button" onclick="togglePiP()">📺 PiP</button>
+      <button class="nav-btn" type="button" onclick="clearRecents()">🗑 Recents</button>
+      <button class="nav-btn" type="button" onclick="recordMode()">⏺ Record</button>
+      <button class="nav-btn" type="button" onclick="loadUltra()">🚀 Ultra Feeds</button>
+      <button class="nav-btn" type="button" onclick="repairStreams()">🛠 Repair</button>
+      <button class="nav-btn" type="button" onclick="optimizeMemory()">🧠 Optimize</button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search-box">
+          <input
+            id="channelSearchInput"
+            type="search"
+            oninput="search(this.value)"
+            placeholder="Search BTECH-TV World..."
+            aria-label="Search BTECH-TV World"
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+
+        <div class="topbar-status">
+          <div id="floatingTimer">2m 00s</div>
+          <div class="live">🔴 BTECH-TV LIVE</div>
+        </div>
+      </header>
+
+      <section class="hero" aria-label="BTECH-TV statistics">
+        <h3>BTECH-TV World PRO MAX SYSTEM</h3>
+        <div class="stats">
+          <div class="stat">📺 <strong id="total">0</strong><span>TOTAL</span></div>
+          <div class="stat">⭐ <strong id="fav">0</strong><span>FAV</span></div>
+          <div class="stat">⚫ <strong id="dead">0</strong><span>DEAD</span></div>
+          <div class="stat">🌍 <strong id="live">0</strong><span>LIVE</span></div>
+        </div>
+      </section>
+
+      <section class="btech-screen-monitor screen-monitor" aria-label="BTECH-TV fixed screen monitor">
+        <div
+          class="player-container"
+          id="btechPlayerContainer"
+          data-watermark-enabled="true"
+          aria-label="BTECH-TV live video player"
+        >
+          <video
+            id="video"
+            controls
+            autoplay
+            muted
+            playsinline
+            preload="metadata"
+            aria-label="BTECH-TV live stream"
+          ></video>
+
+          <div id="btechPlayerWatermark" class="btech-player-watermark" aria-hidden="true">
+            <img id="btechWatermarkLogo" src="logo.png" alt="" draggable="false" onerror="this.hidden=true">
+            <div class="btech-watermark-text">
+              <strong>BTECH-TV</strong>
+              <span>WORLD PRO MAX</span>
+            </div>
+          </div>
+
+          <div id="btechPlayerLiveBadge" class="btech-player-live-badge" aria-hidden="true">
+            <span></span> LIVE
+          </div>
+
+          <div id="btechPlayerChannelOverlay" class="btech-player-channel-overlay" aria-live="polite">
+            <strong id="btechPlayerChannelNumber">CH 000</strong>
+            <span id="btechPlayerChannelName">No channel selected</span>
+          </div>
+
+          <div id="btechFullscreenHint" class="btech-fullscreen-hint" aria-hidden="true">
+            BTECH-TV WORLD PRO MAX
+          </div>
+        </div>
+
+        <div class="quality-selector">
+          <button type="button" aria-label="Current stream quality">
+            Quality: <span data-current-quality>auto</span>
+          </button>
+          <div data-quality-menu></div>
+        </div>
+
+        <div class="controls">
+          <button type="button" onclick="next()">▶ Next</button>
+          <button type="button" onclick="prev()">◀ Prev</button>
+          <button type="button" onclick="toggleMute()">🔊 Mute</button>
+          <button type="button" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+          <button type="button" onclick="loadUltra()">🚀 Global</button>
+          <div class="designer-credit">
+            Design by <span>BINAINU SHAIBU</span> | BTECH WEBSITE DESIGN
+          </div>
+        </div>
+      </section>
+
+      <section class="btech-channel-display channel-display-section" aria-labelledby="channelDisplayTitle">
+        <div class="channel-display-header">
+          <h2 id="channelDisplayTitle">BTECH-TV LIVE CHANNELS</h2>
+          <span id="channelCountLabel">0 channels</span>
+        </div>
+
+        <!-- ONLY THIS ELEMENT SCROLLS -->
+        <div
+          class="channel-wrapper"
+          id="channelWrapper"
+          tabindex="0"
+          aria-label="Scrollable BTECH-TV channel list"
+        >
+          <div class="channels" id="grid" aria-live="polite" aria-label="Live TV channels"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="trialOverlay" class="trial-overlay" role="dialog" aria-modal="true" aria-labelledby="trialTitle">
+    <div id="trialBox" class="trial-box">
+      <img src="logo.png" alt="BTECH-TV WORLD PRO MAX" onerror="this.hidden=true">
+      <h1 id="trialTitle">BTECH-TV Trial Version</h1>
+      <h2 id="timer">Trial expires in: 2m 00s</h2>
+      <p>Watch free for 2 minutes.</p>
+      <p class="muted">Your trial version has expired.</p>
+
+      <div id="paymentArea">
+        <select id="package" aria-label="Select BTECH-TV package">
+          <option value="">Select Package</option>
+          <option value="packages/premium/index.html">👑 Premium</option>
+          <option value="packages/super-compact-plus/index.html">👑 Super Compact Plus</option>
+          <option value="packages/super-premium/index.html">👑 Super Premium</option>
+          <option value="packages/super-premium-compact-plus/index.html">👑 Super Premium Compact Plus</option>
+          <option value="packages/super-premium-plus/index.html">👑 Super Premium Plus</option>
+        </select>
+
+        <input id="fullName" type="text" placeholder="Full Name" autocomplete="name" maxlength="120">
+        <input id="email" type="email" placeholder="Email Address" autocomplete="email" maxlength="254">
+        <input id="phone" type="tel" placeholder="Phone Number" autocomplete="tel" maxlength="30">
+        <input id="otherInfo" type="text" placeholder="Other Information" maxlength="500">
+
+        <button id="trialPayButton" type="button" onclick="pay()">Continue to Package</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/channels.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/state.js" defer></script>
+  <script src="js/player.js" defer></script>
+  <script src="js/channels.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
