@@ -1,0 +1,70 @@
+/* BTECH-TV — application layout
+   The page itself does NOT scroll.
+   The channel-wrapper is the controlled channel scroller.
+*/
+
+.app {
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: 100dvh;
+  padding: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 0;
+  min-width: 0;
+  min-height: 0;
+  height: 100dvh;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.topbar-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.btech-screen-monitor {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.screen-monitor {
+  width: 100%;
+}
+
+.btech-channel-display {
+  width: 100%;
+  min-width: 0;
+}

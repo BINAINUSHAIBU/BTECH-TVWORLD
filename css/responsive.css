@@ -1,0 +1,251 @@
+/* BTECH-TV — responsive rules */
+
+@media (max-width: 1100px) {
+  .sidebar {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  .player-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: hidden;
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: 30dvh;
+    border-right: 0;
+    border-bottom: 1px solid #1d2b4f;
+  }
+
+  .main {
+    width: 100%;
+    height: 70dvh;
+    min-height: 0;
+    padding: 8px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .search-box input {
+    width: 200px;
+  }
+
+  .channel-wrapper {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box,
+  .search-box input {
+    width: 100%;
+  }
+
+  .topbar-status {
+    justify-content: space-between;
+  }
+
+  .player-container {
+    height: 240px;
+    min-height: 200px;
+    border-radius: 8px;
+    --btech-watermark-size: 48px;
+    --btech-watermark-opacity: .84;
+  }
+
+  .btech-player-watermark {
+    top: 8px;
+    left: 8px;
+    padding: 4px 7px;
+    gap: 5px;
+  }
+
+  .btech-watermark-text strong {
+    font-size: 11px;
+  }
+
+  .btech-watermark-text span {
+    font-size: 7px;
+  }
+
+  .btech-player-live-badge {
+    top: 8px;
+    right: 8px;
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+
+  .btech-player-channel-overlay {
+    left: 8px;
+    bottom: 8px;
+    max-width: 75%;
+    padding: 6px 9px;
+  }
+
+  .btech-player-channel-overlay strong {
+    font-size: 10px;
+  }
+
+  .btech-player-channel-overlay span {
+    font-size: 11px;
+  }
+
+  .btech-fullscreen-hint {
+    display: none;
+  }
+
+  #floatingTimer {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .live {
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  .controls {
+    gap: 5px;
+  }
+
+  .controls button {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .designer-credit {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    font-size: 11px;
+  }
+
+  .channels {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .player-container {
+    height: 210px;
+  }
+
+  .btech-watermark-text {
+    display: none;
+  }
+
+  .channels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: 9px;
+  }
+
+  .card-channel-name {
+    font-size: 13px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .card:hover {
+    transform: none;
+    border-color: #1f355d;
+    background: #111a31;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .btech-player-live-badge span {
+    animation: none !important;
+  }
+
+  .card:hover,
+  .nav-btn:active,
+  .controls button:active {
+    transform: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .sidebar,
+  .main,
+  .player-container,
+  .card,
+  .trial-box,
+  .nav-btn,
+  .controls button,
+  .quality-selector button {
+    border-color: CanvasText;
+  }
+
+  .card,
+  .nav-btn,
+  .controls button,
+  .quality-selector button {
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media print {
+  body,
+  .app,
+  .main {
+    height: auto;
+    overflow: visible;
+  }
+
+  .sidebar,
+  .controls,
+  .quality-selector,
+  .trial-overlay {
+    display: none !important;
+  }
+
+  .player-container {
+    height: 320px;
+  }
+
+  .channel-wrapper {
+    max-height: none;
+    overflow: visible;
+  }
+}
