@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050816">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="preconnect" href="https://iptv-org.github.io" crossorigin>
+  <link rel="dns-prefetch" href="//iptv-org.github.io">
+  <link rel="preload" as="fetch" href="https://iptv-org.github.io/api/streams.json" crossorigin="anonymous">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <title>ORBITECH-TV WORLD</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.15/dist/hls.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+  <aside class="sidebar">
+    <div class="brand brand-world">
+      <img src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD" class="sidebar-brand-logo">
+      <div class="brand-copy"><strong>ORBITECH-TV WORLD</strong><span>WORLD CHANNELS</span><small>GLOBAL IPTV PLATFORM</small></div>
+    </div>
+
+    <button class="nav active" data-view="all">📺 All Channels</button>
+    <button class="nav" data-view="favorites">⭐ Favorites</button>
+
+    <div class="side-title side-title-row"><span>COUNTRIES</span><span id="countryCountLabel">0</span></div>
+    <input id="sideSearch" class="side-search" type="search" placeholder="Search countries or categories..." aria-label="Search countries or categories">
+    <div id="countryList" class="side-list"></div>
+
+    <div class="side-title side-title-row"><span>CATEGORIES</span><span id="categoryCountLabel">0</span></div>
+    <div id="categoryList" class="side-list"></div>
+
+    <div class="side-footer">
+      <button id="reloadBtn" class="side-action">↻ Reload catalog</button>
+      <a href="https://github.com/iptv-org/iptv" target="_blank" rel="noopener">Public stream source ↗</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open sidebar">☰</button>
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="search" type="search" placeholder="Search channels, countries, categories...">
+      </div>
+      <div class="top-actions"><div class="world-chip">● ORBITECH-TV WORLD</div>
+        <a href="user.html" class="admin-link">👤 My ORBITECH-TV WORLD</a>
+        <button id="fullscreenBtn" title="Fullscreen">⛶</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">● LIVE ORBITECH-TV WORLD CHANNELS</div>
+        <h1>ORBITECH-TV WORLD <span>CHANNELS</span></h1>
+        <p>Global LIVE ORBITECH-TV WORLD CHANNELS</p>
+      </div>
+      <div class="hero-status"><span class="pulse"></span><span id="statusText">10,068 streams ready</span><span id="planStatus" class="plan-status package-banner">6,000 CH • 7D LEFT</span></div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><span>CHANNELS</span><b id="totalStat">0</b></div>
+      <div class="stat"><span>VISIBLE</span><b id="visibleStat">0</b></div>
+      <div class="stat"><span>FAVORITES</span><b id="favStat">0</b></div>
+      <div class="stat"><span>COUNTRIES</span><b id="countryStat">0</b></div>
+    </section>
+
+    <section class="workspace">
+      <div class="player-card">
+        <div class="player-shell-label">
+          <span class="monitor-pill">● LIVE</span>
+          <strong>ORBITECH-TV WORLD MONITOR</strong>
+          <span class="monitor-sub">GLOBAL CHANNEL PLAYER</span>
+        </div>
+        <div class="player-head">
+          <div class="player-title-group">
+            <div class="outer-brand-lockup">
+              <img class="player-outside-logo" src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD">
+              <span>WORLD</span>
+            </div>
+            <div class="player-channel-title">
+              <div><span class="live-dot">LIVE</span> <span class="btech-monitor-label">LIVE ORBITECH-TV WORLD CHANNELS</span></div>
+              <strong id="nowTitle">Select a channel</strong>
+            </div>
+          </div>
+          <button id="closePlayer" class="ghost">Clear</button>
+        </div>
+        <div class="player">
+          <div class="inner-player-top">
+            <span>ORBITECH-TV WORLD</span>
+            <span>LIVE CHANNEL</span>
+          </div>
+          <video id="video" controls playsinline></video>
+          <div class="inner-player-brand">
+            <img src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD">
+            <span>ORBITECH-TV WORLD</span>
+          </div>
+          <div class="player-watermark" aria-label="ORBITECH-TV WORLD">
+            <img src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD">
+          </div>
+          <div id="playerEmpty" class="player-empty">
+            <div class="big-tv">📺</div>
+            <strong>ORBITECH-TV WORLD</strong>
+            <span class="empty-live">● LIVE CHANNEL PLAYER</span>
+            <small>Select a channel to start playback.</small>
+          </div>
+        </div>
+        <div class="player-brand-strip">
+          <img src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD">
+          <div><strong>ORBITECH-TV WORLD CHANNELS</strong><span>Official Global Live Player</span></div>
+        </div>
+        <div class="player-info">
+          <span id="nowMeta">No channel selected</span>
+          <span class="designer-credit">Design by ORBITECH, BINAINU SHAIBU</span>
+        </div>
+      </div>
+
+      <div class="filters-card">
+        <div class="filter-row">
+          <select id="countryFilter"><option value="">All countries</option></select>
+          <select id="categoryFilter"><option value="">All categories</option></select>
+          <select id="languageFilter"><option value="">All languages</option></select>
+          <select id="qualityFilter">
+            <option value="">Any quality</option>
+            <option value="4K">4K</option><option value="1080">1080p+</option>
+            <option value="720">720p+</option><option value="480">480p+</option>
+          </select>
+        </div>
+        <div class="result-bar">
+          <strong>Channel Director</strong>
+          <span id="resultText">0 channels</span>
+        </div>
+      </div>
+
+      <div class="channel-director-scroll" aria-label="Channel Director">
+        <section id="grid" class="grid"></section>
+        <div id="empty" class="empty" hidden>No channels match the current filters.</div>
+        <button id="loadMore" class="load-more" hidden>Load more</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="accessGate" class="access-gate" aria-modal="true" role="dialog">
+    <div class="access-panel">
+      <div class="access-brand"><img src="assets/btech-tv-world-channels.svg" alt="ORBITECH-TV WORLD" class="access-logo"><div><strong>ORBITECH-TV WORLD</strong><div style="color:#8fa4c1;font-size:12px">ORBITECH-TV WORLD PACKAGE ACTIVATION</div></div></div>
+      <h2 id="accessTitle">5-Minute Demo Trial</h2>
+      <p id="accessMessage">Your free demo gives you access to the dashboard for 5 minutes. When it ends, choose a channel package to continue.</p>
+      <div id="trialTimer" class="trial-timer">05:00</div>
+      <div id="packageForm" class="package-grid" hidden>
+        <div class="package-full"><label for="packageSize">CHANNEL PACKAGE</label><select id="packageSize"></select></div>
+        <div><label for="duration">PERIOD DURATION</label><select id="duration"><option value="7">7 Days</option><option value="30" selected>30 Days</option></select></div>
+        <div><label for="gateway">PAYMENT GATEWAY</label><select id="gateway"><option value="paystack">Paystack — Demo</option><option value="flutterwave">Flutterwave — Demo</option><option value="monnify">Monnify — Demo</option><option value="stripe">Stripe — Demo</option></select></div>
+        <div class="package-full"><div id="paymentSummary" class="payment-summary">Select a package and period to continue.</div></div>
+      </div>
+      <div id="accessActions" class="access-actions"><button id="startTrialBtn" class="access-btn">Start 5-Minute Trial</button></div>
+    </div>
+  </div>
+  <script>
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>
